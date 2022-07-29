@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"HTTP://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.groupware.mapper.EmailMapper">
+
+<select id="getList" resultType="com.groupware.dto.EmailDTO">
+<![CDATA[ select * from Email ]]>
+</select>
+
+
+<insert id="insert"> insert into Email (senderName,senderMail,receiveMail,title,content,registerDate) values (#{senderName},#{senderMail},#{receiveMail},#{title},#{content},sysdate) </insert>
+
+
+<select id="receiveList" resultType="com.groupware.dto.EmailDTO">
+
+select *
+from Email
+where receiveMail =#{receiveMail}
+
+</select>
+
+
+<select id="sendList" resultType="com.groupware.dto.EmailDTO">
+
+select *
+from Email
+where senderMail =#{senderMail}
+
+</select>
+<!-- 상세 페이지 -->
+<select id="detail" resultType="com.groupware.dto.EmailDTO">
+
+select *
+from Email
+where title =#{title}
+
+</select>
+
+
+
+</mapper>
