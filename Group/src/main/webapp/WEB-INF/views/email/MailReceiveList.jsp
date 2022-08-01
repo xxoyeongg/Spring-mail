@@ -1,17 +1,23 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+    <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<style type="text/css">
+
+
+
+</style>
 </head>
 <body>
-<h2>받는 메일함</h2>
-<p><c:out value="${Receive.receiveMail }"/>의 메일함</p>
 
-        <table border="1">
+<div id="area">
+<%@ include file="/WEB-INF/views/include/header.jsp" %>
+  <table border="1">
             <thead>
                 <tr>
                     <th>보낸사람 </th>
@@ -34,5 +40,11 @@
 			 
             </tbody>
         </table>
+
+</div>
+<h2>받는 메일함</h2>
+
+
+      
 </body>
 </html>

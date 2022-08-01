@@ -5,6 +5,8 @@ import java.util.List;
 import com.groupware.dto.EmailDTO;
 
 public interface EmailService {
+	
+	
 	public void send(EmailDTO email);
 	
 	public List<EmailDTO> getList();
@@ -16,6 +18,10 @@ public interface EmailService {
 	public List<EmailDTO> sendList(EmailDTO dto);
 
 	public EmailDTO detail(String title);//상세보기
+
+
+
+	void reply(EmailDTO email);//답장
 
 	
 

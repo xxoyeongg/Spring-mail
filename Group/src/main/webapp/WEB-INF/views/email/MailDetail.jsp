@@ -33,9 +33,13 @@
 					<td><c:out value="${data.registerDate }"/></td>
 					<td><c:out value="${data.content }"/></td>
 					</tr>
+					
+				
 				
 			 
             </tbody>
+           
         </table>
+         <a href="/email/reply?receiveMail=${data.senderMail}">답장하기</a>
 </body>
 </html>

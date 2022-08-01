@@ -4,13 +4,15 @@
 <mapper namespace="com.groupware.mapper.EmailMapper">
 
 <select id="getList" resultType="com.groupware.dto.EmailDTO">
-<![CDATA[ select * from Email ]]>
+<![CDATA[ select * from Email order by registerDate desc ]]>
 </select>
 
+<!-- 메일 전송 -->
+<insert id="insert"> insert into Email (senderName,senderMail,receiveMail,title,content,registerDate) 
+values (#{senderName},#{senderMail},#{receiveMail},#{title},#{content},to_date(sysdate,'YYYY-MM-DD HH:MI:SS')) 
+</insert>
 
-<insert id="insert"> insert into Email (senderName,senderMail,receiveMail,title,content,registerDate) values (#{senderName},#{senderMail},#{receiveMail},#{title},#{content},sysdate) </insert>
-
-
+<!-- 받는 메일함 -->
 <select id="receiveList" resultType="com.groupware.dto.EmailDTO">
 
 select *
@@ -19,7 +21,7 @@ where receiveMail =#{receiveMail}
 
 </select>
 
-
+<!-- 보낸메일함 -->
 <select id="sendList" resultType="com.groupware.dto.EmailDTO">
 
 select *
@@ -35,6 +37,13 @@ from Email
 where title =#{title}
 
 </select>
+
+<!-- 답장 -->
+
+<insert id="reply">
+insert into Email (senderName,senderMail,receiveMail,title,content,registerDate) 
+values (#{senderName},#{senderMail},#{receiveMail},#{title},#{content},to_date(sysdate,'YYYY-MM-DD HH:MI:SS')) 
+</insert>
 
 
 

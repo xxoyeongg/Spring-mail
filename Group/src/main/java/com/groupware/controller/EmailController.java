@@ -7,6 +7,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.groupware.dto.EmailDTO;
@@ -77,6 +78,23 @@ public class EmailController {
 		m.addAttribute("data",dto);
 		return "email/MailDetail";
 	}
+	//답장 기능 
+	@GetMapping("/reply")
+	public String reply(HttpSession session,@RequestParam String receiveMail) {
+		session.setAttribute("receiveMail", receiveMail);
+		return "email/ReplyWrite";
+	}
+	//답장 프로세스
+	@PostMapping("replypro")
+	public String replypro(EmailDTO email,RedirectAttributes rttr,Model m) {
+		log.info("register:"+email);
+	
+		service.reply(email);
+		rttr.addFlashAttribute("result",email.getReceiveMail());
+		return "redirect:/email/MailList";
+	}
+	
+	//게시글 임시저장 
 	
 	//메일 삭제
 	

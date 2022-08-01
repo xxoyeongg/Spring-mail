@@ -19,6 +19,11 @@ public interface EmailMapper {
 
 	public EmailDTO detail(String title);
 
+	public EmailDTO reply(String senderMail);
+
+	public void reply(EmailDTO email);
+	
+
 	
 	
 }

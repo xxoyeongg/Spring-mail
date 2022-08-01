@@ -56,6 +56,12 @@ public class EmailServiceImpl implements EmailService{
 		return mapper.detail(title);
 	}
 
+	@Override
+	public void reply(EmailDTO email) {
+		
+		mapper.reply(email);
+	}
+
 
 
 
