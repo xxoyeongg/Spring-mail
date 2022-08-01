@@ -13,15 +13,18 @@ public interface EmailService {
 	
 	
 	
-	public List<EmailDTO> receiveList(EmailDTO dto);
+	public List<EmailDTO> receiveList(EmailDTO dto);//받은메일함
 
-	public List<EmailDTO> sendList(EmailDTO dto);
+	public List<EmailDTO> sendList(EmailDTO dto);//보낸 메일함
 
-	public EmailDTO detail(String title);//상세보기
+	public EmailDTO detail(int mailnum);//상세보기
+	public void readupdate(int mailnuml); //수신확인
+
 
 
 
 	void reply(EmailDTO email);//답장
+
 
 	
 

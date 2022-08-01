@@ -17,11 +17,15 @@ public interface EmailMapper {
 	public List<EmailDTO> receiveList(EmailDTO dto);
 
 
-	public EmailDTO detail(String title);
+	public EmailDTO detail(int mailnum);
 
 	public EmailDTO reply(String senderMail);
 
 	public void reply(EmailDTO email);
+
+	public void readupdate(int mailnum);
+
+	
 	
 
 	

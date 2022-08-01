@@ -51,16 +51,29 @@ public class EmailServiceImpl implements EmailService{
 	}
 
 	@Override
-	public EmailDTO detail(String title) {
+	public EmailDTO detail(int mailnum) {
 		// TODO Auto-generated method stub
-		return mapper.detail(title);
+		return mapper.detail(mailnum);
 	}
+	@Override
+	public void readupdate(int mailnum) {
+		// TODO Auto-generated method stub
+		mapper.readupdate(mailnum);
+		
+	}
+
+
+
 
 	@Override
 	public void reply(EmailDTO email) {
 		
 		mapper.reply(email);
 	}
+
+
+
+
 
 
 

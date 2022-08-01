@@ -13,19 +13,24 @@
 	*{
       margin: 0; padding: 0;
       font-family: 'LeferiPoint-WhiteObliqueA';
-      text-align: center;
       
     }
     /* 컨테이너 */
 .container{
   width:1500px; height: 800px;
   margin: 0 auto;
-  text-align: center;
-}
-table{
 
- margin: 0 auto;
 }
+.nav{
+width: 300px; height: 100%;
+float:left;
+}
+
+section{
+width: 1000px; height: 100%;
+float:left;
+}
+
 
 
 
@@ -36,9 +41,12 @@ table{
 </head>
 <body>
 <div class="container">
-<%@ include file="/WEB-INF/views/include/header.jsp" %>
-    <h1 class="con">받은메일함</h1>
-    <section class="article-list table-common con">
+
+	<div class="nav">
+		<%@ include file="/WEB-INF/views/include/mailnav.jsp" %>
+	</div>
+    <section>
+    <h2>전체 메일함 && 메일 클릭시 메인 화면 입니다</h2>
         <table border="1">
             <thead>
                 <tr>
@@ -53,9 +61,9 @@ table{
  				
 				<c:forEach items="${MailList }" var="email">
 					<tr>
-					<td><c:out value="${email.senderName }"/></td>
-					<td><c:out value="${email.senderMail }"/></td>
-					<td><c:out value="${email.receiveMail }"/></td>
+					<td><c:out value="${email.sendername }"/></td>
+					<td><c:out value="${email.sendermail }"/></td>
+					<td><c:out value="${email.receivemail }"/></td>
 					<td><c:out value="${email.title }"/></td>
 					</tr>
 				</c:forEach>

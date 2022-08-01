@@ -6,17 +6,35 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<style type="text/css">
+	*{
+      margin: 0; padding: 0;
+      font-family: 'LeferiPoint-WhiteObliqueA';
+      
+    }
+ /* 컨테이너 */
+.container{
+  width:1500px; height: 800px;
+  margin: 0 auto;
+
+}
+.nav{
+width: 300px; height: 100%;
+float:left;
+}
+
+</style>
 </head>
 <body>
-제목:
-보낸사람:
-날짜:
-내용:
-답장:
+<div class="container">
+	<div class="nav">
+		<%@ include file="/WEB-INF/views/include/mailnav.jsp" %>
+	</div>
 <h2>상세페이지</h2>
       <table border="1">
             <thead>
                 <tr>
+                
                     <th>제목 </th>
                     <th>보낸사람</th>
                     <th>시간</th>
@@ -28,8 +46,9 @@
  				
 				
 					<tr>
+					
 					<td><c:out value="${data.title }"/></td>
-					<td><c:out value="${data.senderMail }"/></td>
+					<td><c:out value="${data.sendermail }"/></td>
 					<td><c:out value="${data.registerDate }"/></td>
 					<td><c:out value="${data.content }"/></td>
 					</tr>
@@ -40,6 +59,7 @@
             </tbody>
            
         </table>
-         <a href="/email/reply?receiveMail=${data.senderMail}">답장하기</a>
+         <a href="/email/reply?receivemail=${data.sendermail}">답장하기</a>
+	</div>
 </body>
 </html>

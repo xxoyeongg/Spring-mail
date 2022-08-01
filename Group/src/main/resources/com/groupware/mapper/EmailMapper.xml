@@ -8,8 +8,8 @@
 </select>
 
 <!-- 메일 전송 -->
-<insert id="insert"> insert into Email (senderName,senderMail,receiveMail,title,content,registerDate) 
-values (#{senderName},#{senderMail},#{receiveMail},#{title},#{content},to_date(sysdate,'YYYY-MM-DD HH:MI:SS')) 
+<insert id="insert"> insert into Email (mailnum,sendername,sendermail,receivemail,title,content,registerDate,readck) 
+values (eml.nextval,#{sendername},#{sendermail},#{receivemail},#{title},#{content},to_date(sysdate,'YY-MM-DD HH:MI:SS'),0) 
 </insert>
 
 <!-- 받는 메일함 -->
@@ -17,7 +17,7 @@ values (#{senderName},#{senderMail},#{receiveMail},#{title},#{content},to_date(s
 
 select *
 from Email
-where receiveMail =#{receiveMail}
+where receivemail =#{receivemail}
 
 </select>
 
@@ -26,7 +26,7 @@ where receiveMail =#{receiveMail}
 
 select *
 from Email
-where senderMail =#{senderMail}
+where sendermail =#{sendermail}
 
 </select>
 <!-- 상세 페이지 -->
@@ -34,16 +34,23 @@ where senderMail =#{senderMail}
 
 select *
 from Email
-where title =#{title}
+where mailnum =#{mailnum}
 
 </select>
 
 <!-- 답장 -->
 
 <insert id="reply">
-insert into Email (senderName,senderMail,receiveMail,title,content,registerDate) 
-values (#{senderName},#{senderMail},#{receiveMail},#{title},#{content},to_date(sysdate,'YYYY-MM-DD HH:MI:SS')) 
+insert into Email (mailnum,sendername,sendermail,receivemail,title,content,registerDate,readck) 
+values (eml.nextval,#{sendername},#{sendermail},#{receivemail},#{title},#{content},to_date(sysdate,'YYYY-MM-DD HH:MI:SS'),0) 
 </insert>
+
+<!-- 수신확인 시 업데이트 -->
+<update id="readupdate" >
+update Email
+set readck =1 
+where mailnum=#{mailnum}
+</update>
 
 
 

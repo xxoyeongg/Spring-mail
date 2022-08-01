@@ -43,7 +43,7 @@ public class EmailController {
 	public String writepro(EmailDTO email,RedirectAttributes rttr) {
 		log.info("register:"+email);
 		service.send(email);
-		rttr.addFlashAttribute("result",email.getSenderName());
+		rttr.addFlashAttribute("result",email.getSendermail());
 	
 		return "redirect:/email/MailList";
 	}
@@ -53,7 +53,7 @@ public class EmailController {
 	public String recivelist(HttpSession session,Model m) {
 		
 		EmailDTO dto = new EmailDTO();
-		dto.setReceiveMail("xo@mit.com");
+		dto.setReceivemail("xo@mit.com");
 		m.addAttribute("ReceiveList", service.receiveList(dto));
 		return "email/MailReceiveList";
 	}
@@ -66,35 +66,46 @@ public class EmailController {
 	public String sendlist(HttpSession session,Model m) {
 		
 		EmailDTO dto = new EmailDTO();
-		dto.setSenderMail("xo@mit.com");
+		dto.setSendermail("xo@mit.com");
 		m.addAttribute("SendList", service.sendList(dto));
 		return "email/MailSendList";
 	}
 	
-	//제목 클릭시 상세페이지 이동
+	//제목 클릭시 상세페이지 이동 ,읽음 처리 업데이트
 	@GetMapping("/detail")
-	public String getdatail(Model m,String title) {
-		EmailDTO dto= service.detail(title);
+	public String getdatail(Model m,int mailnum) {
+		service.readupdate(mailnum);
+		EmailDTO dto= service.detail(mailnum);//상세보기		
 		m.addAttribute("data",dto);
 		return "email/MailDetail";
 	}
+	
+	//안읽은 메일 카운트
+	
+	//안읽은 메일함 
+
+	
+	
+	
+	
 	//답장 기능 
 	@GetMapping("/reply")
-	public String reply(HttpSession session,@RequestParam String receiveMail) {
-		session.setAttribute("receiveMail", receiveMail);
+	public String reply(HttpSession session,@RequestParam String receivemail) {
+		session.setAttribute("receiveMail", receivemail);
 		return "email/ReplyWrite";
 	}
 	//답장 프로세스
-	@PostMapping("replypro")
+	@PostMapping("/replypro")
 	public String replypro(EmailDTO email,RedirectAttributes rttr,Model m) {
 		log.info("register:"+email);
 	
 		service.reply(email);
-		rttr.addFlashAttribute("result",email.getReceiveMail());
+		rttr.addFlashAttribute("result",email.getReceivemail());
 		return "redirect:/email/MailList";
 	}
 	
-	//게시글 임시저장 
+	//게시글 확인 하면 읽음처리 업데이트
+	
 	
 	//메일 삭제
 	
