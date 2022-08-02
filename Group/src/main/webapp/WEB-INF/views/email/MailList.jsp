@@ -43,13 +43,14 @@ float:left;
 <div class="container">
 
 	<div class="nav">
-		<%@ include file="/WEB-INF/views/include/mailnav.jsp" %>
+		<%@ include file="/WEB-INF/views/email/mailnav.jsp" %>
 	</div>
     <section>
     <h2>전체 메일함 && 메일 클릭시 메인 화면 입니다</h2>
         <table border="1">
             <thead>
                 <tr>
+                	<th>&nbsp</th>
                     <th>발신인 </th>
                     <th>발신자 이메일</th>
                     <th>수신자 이메일</th>

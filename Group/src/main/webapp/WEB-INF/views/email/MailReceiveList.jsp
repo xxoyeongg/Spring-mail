@@ -30,7 +30,7 @@ float:left;
 
 <div class="container">
 	<div class="nav">
-		<%@ include file="/WEB-INF/views/include/mailnav.jsp" %>
+		<%@ include file="/WEB-INF/views/email/mailnav.jsp" %>
 	</div>
 	<h2>받는 메일함</h2>
   <table border="1">

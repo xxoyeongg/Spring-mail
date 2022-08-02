@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -29,7 +30,13 @@
                   left: 25%; top: 5%;
                   border: 1px solid;
                 
+                
                 }
+                #profile p{
+              
+                width: 280px; height: 30px;
+                }
+                
                 #profile #logout{
                   text-align: center;
                   width: 280px; height: 30px;
@@ -77,6 +84,12 @@
                 #mail_section2 ul li a{
                   text-decoration: none;
                 }
+                #a{
+                	color: red;
+                	border: 1px solid black;
+                	background-color: black;
+                	border-radius: 100px;
+                }
 </style>
 </head>
 <body>
@@ -84,7 +97,7 @@
 
     <div id="profile">
       <div id="profile_image"><img src="" alt=" 이미지 예시"></div>
-
+	<br>
       <p>이름</p>
       <p>부서</p>
       <p id="logout"><a href="@" >logout</a></p>
@@ -92,7 +105,10 @@
 
      <div id="mail_section1">
 <div id="sec1" class="sec"><a href="write">메일쓰기</a></div>
-<div id="sec2" class="sec"> <a href="receiveList">안읽음</a></div>
+<div id="sec2" class="sec"> <a href="unreadList">안읽음</a>
+		<c:if test="${Unreadcount!=null}"><span id="a">${Unreadcount}</span></c:if>
+		
+		 </div>
 <div id="sec3" class="sec"> <a href="@">주소록</a></div>
 
 

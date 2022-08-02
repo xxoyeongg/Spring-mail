@@ -6,15 +6,33 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<style type="text/css">
+	*{
+      margin: 0; padding: 0;
+      font-family: 'LeferiPoint-WhiteObliqueA';
+      
+    }
+ /* 컨테이너 */
+.container{
+  width:1500px; height: 800px;
+  margin: 0 auto;
+
+}
+.nav{
+width: 300px; height: 100%;
+float:left;
+}
+
+</style>
 </head>
 <body>
 <div class="container">
 
 	<div class="nav">
-		<%@ include file="/WEB-INF/views/include/mailnav.jsp" %>
+	<%@ include file="/WEB-INF/views/email/mailnav.jsp" %>
 	</div>
     <section>
-    <h2>전체 메일함</h2>
+    <h2>안읽은  메일함 읽음 0만 떠야함 </h2>
         <table border="1">
             <thead>
                 <tr>
@@ -28,18 +46,21 @@
             </thead>
             <tbody>
  				
-				<c:forEach items="${MailList }" var="email">
+				<c:forEach items="${Unreadlist }" var="email">
 					<tr>
-					<td><a href="/email/detail?mailnum=${email.mailnum}"><c:out value="${email.mailnum }"/></a></td>
+					<td><a href="/email/detail?mailnum=${email.mailnum}">${email.mailnum }</a></td>
 					<td><c:out value="${email.sendername }"/></td>
 					<td><c:out value="${email.sendermail }"/></td>
-					<td><c:out value="${email.receivemail }"/></td>
-					<td><c:out value="${email.title }"/></td>
+					<td><c:out value="${email.registerDate }"/></td>
+					<td><a href="/email/detail?mailnum=${email.mailnum}"><c:out value="${email.title }"/></a></td>
+					<td><c:out value="${email.readck }"/></td>
+				
 					</tr>
 				</c:forEach>
 			 
             </tbody>
         </table>
+        안읽은 메일 수 :${Unreadcount}
     </section>
 </div>
 </body>

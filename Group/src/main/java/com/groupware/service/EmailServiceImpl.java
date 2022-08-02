@@ -37,38 +37,52 @@ public class EmailServiceImpl implements EmailService{
 		return mapper.getList();
 	}
 
-
+	//받은메일 리스트
 	@Override
 	public List<EmailDTO> receiveList(EmailDTO dto) {
 		// TODO Auto-generated method stub
 		return mapper.receiveList(dto);
 	}
-
+	//보낸메일 리스트
 	@Override
 	public List<EmailDTO> sendList(EmailDTO dto) {
 		// TODO Auto-generated method stub
 		return mapper.sendList(dto);
 	}
-
+	//상세보기
 	@Override
 	public EmailDTO detail(int mailnum) {
 		// TODO Auto-generated method stub
 		return mapper.detail(mailnum);
 	}
+	//읽음 여부 확인 
 	@Override
 	public void readupdate(int mailnum) {
 		// TODO Auto-generated method stub
 		mapper.readupdate(mailnum);
 		
 	}
+	//메일 안읽은 리스트
+	@Override
+	public List<EmailDTO> unreadlist(EmailDTO dto) {
+		// TODO Auto-generated method stub
+		return mapper.unreadlist(dto);
+	}
 
 
 
 
+	//메일 답장
 	@Override
 	public void reply(EmailDTO email) {
 		
 		mapper.reply(email);
+	}
+	//안읽은 메일의 갯수
+	@Override
+	public int count(EmailDTO dto) {
+		// TODO Auto-generated method stub
+		return mapper.count(dto);
 	}
 
 

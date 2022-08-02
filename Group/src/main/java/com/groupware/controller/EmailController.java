@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.groupware.dto.EmailDTO;
@@ -34,14 +35,19 @@ public class EmailController {
 
 	//메일 쓰기
 	@GetMapping("/write")
-	public String write() {
+	public String write(HttpSession session,Model m) {
+		
+		//보내는 사람  고정
+		EmailDTO dto = new EmailDTO();
+		dto.setSendermail("xo@mit.com");
+		m.addAttribute("mail", dto);
 		return "email/write";
 		
 	}
 	//메일 전송 프로세스
 	@PostMapping("/writepro")
 	public String writepro(EmailDTO email,RedirectAttributes rttr) {
-		log.info("register:"+email);
+		log.info("register 메일 등록:"+email);
 		service.send(email);
 		rttr.addFlashAttribute("result",email.getSendermail());
 	
@@ -80,10 +86,18 @@ public class EmailController {
 		return "email/MailDetail";
 	}
 	
-	//안읽은 메일 카운트
+
+
 	
 	//안읽은 메일함 
-
+	@GetMapping("/unreadList")
+	public String unreadlist(HttpSession session,Model m) {
+		EmailDTO dto = new EmailDTO();
+		dto.setReceivemail("xo@mit.com");
+		m.addAttribute("Unreadlist", service.unreadlist(dto));
+		m.addAttribute("Unreadcount", service.count(dto)); //메일 수 카운트
+		return "email/UnreadMailList";
+	}
 	
 	
 	

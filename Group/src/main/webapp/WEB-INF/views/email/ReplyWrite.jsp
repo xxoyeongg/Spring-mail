@@ -32,7 +32,7 @@ String receiveMail =(String)session.getAttribute("receiveMail");
 <body>
 <div class="container">
 	<div class="nav">
-		<%@ include file="/WEB-INF/views/include/mailnav.jsp" %>
+	<%@ include file="/WEB-INF/views/email/mailnav.jsp" %>
 	</div>
 <h2>답장</h2>
 <form method="post" action="/email/replypro"> 

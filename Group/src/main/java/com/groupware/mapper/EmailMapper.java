@@ -25,6 +25,10 @@ public interface EmailMapper {
 
 	public void readupdate(int mailnum);
 
+	public List<EmailDTO> unreadlist(EmailDTO dto);
+	
+	public int count(EmailDTO dto);
+
 	
 	
 
