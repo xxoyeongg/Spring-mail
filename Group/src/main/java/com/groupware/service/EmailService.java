@@ -25,8 +25,27 @@ public interface EmailService {
 	
 	public int count(EmailDTO dto);//안읽은 메일 수
 
+	//게시글 삭제  디비 삭제
+	//public void delete(String mailnum);
+	
+	//public void delete(Integer mailnum);
+	
+	//게시글 나에게 안보이게 
+	public void delupdate(int mailnum);
+
+	//받은메일함에서 삭제한 리스트 확인 
+	public List<EmailDTO> deleteview(EmailDTO dto);
+
+	public int revoke(int mailnum);//전송취소 디비 삭제
+
+
+
+
+
+
 
 	
+
 
 
 	

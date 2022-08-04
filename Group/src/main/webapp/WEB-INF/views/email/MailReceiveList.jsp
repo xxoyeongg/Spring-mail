@@ -25,6 +25,8 @@ float:left;
 }
 
 </style>
+
+
 </head>
 <body>
 
@@ -33,9 +35,11 @@ float:left;
 		<%@ include file="/WEB-INF/views/email/mailnav.jsp" %>
 	</div>
 	<h2>받는 메일함</h2>
+	<form action="/email/delupdate" method="post">
   <table border="1">
             <thead>
                 <tr>
+                
                 	<th>이메일 번호</th>
                     <th>보낸사람 </th>
                     <th>발신자 이메일</th>
@@ -52,18 +56,21 @@ float:left;
 					<td><a href="/email/detail?mailnum=${email.mailnum}">${email.mailnum }</a></td>
 					<td><c:out value="${email.sendername }"/></td>
 					<td><c:out value="${email.sendermail }"/></td>
-					<td><c:out value="${email.registerDate }"/></td>
+					<td><fmt:formatDate value="${email.registerDate }" pattern="yyyy/mm/dd/hh:mm:ss"/></td>
 					<td><a href="/email/detail?mailnum=${email.mailnum}"><c:out value="${email.title }"/></a></td>
 					<td><c:out value="${email.readck }"/></td>
-				
+					<td><input type="hidden" value="${email.mailnum }" name='mailnum'>
+						<input type="submit">	
+							</td>					
 					</tr>
 				</c:forEach>
 			 
             </tbody>
+         
         </table>
+        </form>
 
 </div>
-
 
 
       

@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
- <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+     <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -26,11 +26,12 @@ float:left;
 </style>
 </head>
 <body>
+<form action="/email/revoke" method="post">
 <div class="container">
 	<div class="nav">
-		<%@ include file="/WEB-INF/views/email/mailnav.jsp" %>%>
+		<%@ include file="/WEB-INF/views/email/mailnav.jsp" %>
 	</div>
-<h2>상세페이지(받은 메일 )</h2>
+<h2>상세페이지 (보낸 사람 )</h2>
       <table border="1">
             <thead>
                 <tr>
@@ -46,7 +47,7 @@ float:left;
  				
 				
 					<tr>
-					
+					<td><input type="hidden" value="${data.mailnum }" name='mailnum'></td>
 					<td><c:out value="${data.title }"/></td>
 					<td><c:out value="${data.sendermail }"/></td>
 					<td><c:out value="${data.registerDate }"/></td>
@@ -56,10 +57,9 @@ float:left;
 				
 				
 			 
-            </tbody>
-           
+            </tbody>   
         </table>
-         <a href="/email/reply?receivemail=${data.sendermail}">답장하기</a>
 	</div>
+	</form>
 </body>
 </html>

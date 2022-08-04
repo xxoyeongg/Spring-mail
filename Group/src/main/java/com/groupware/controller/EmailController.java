@@ -1,4 +1,7 @@
 package com.groupware.controller;
+import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,6 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
@@ -26,35 +30,35 @@ public class EmailController {
 
 	
 	
-	//¸ŞÀÏ ¸®½ºÆ® (¸ŞÀÎ)
+	//ë©”ì¼ ë¦¬ìŠ¤íŠ¸ (ë©”ì¸)
 	@GetMapping("/MailList")
 	public void MailList(Model model) {
 		log.info("list");		
 		model.addAttribute("MailList",service.getList());
 	}
 
-	//¸ŞÀÏ ¾²±â
+	//ë©”ì¼ ì“°ê¸°
 	@GetMapping("/write")
 	public String write(HttpSession session,Model m) {
 		
-		//º¸³»´Â »ç¶÷  °íÁ¤
-		EmailDTO dto = new EmailDTO();
-		dto.setSendermail("xo@mit.com");
-		m.addAttribute("mail", dto);
+		//ë³´ë‚´ëŠ” ì‚¬ëŒ  ê³ ì •
+		//EmailDTO dto = new EmailDTO();
+		//dto.setSendermail("xo@mit.com");
+		//m.addAttribute("mail", dto);
 		return "email/write";
 		
 	}
-	//¸ŞÀÏ Àü¼Û ÇÁ·Î¼¼½º
+	//ë©”ì¼ ì „ì†¡ í”„ë¡œì„¸ìŠ¤
 	@PostMapping("/writepro")
 	public String writepro(EmailDTO email,RedirectAttributes rttr) {
-		log.info("register ¸ŞÀÏ µî·Ï:"+email);
+		log.info("register ë©”ì¼ ë“±ë¡:"+email);
 		service.send(email);
 		rttr.addFlashAttribute("result",email.getSendermail());
 	
 		return "redirect:/email/MailList";
 	}
 	
-	//¹ŞÀº  ¸ŞÀÏ ÇÔ 
+	//ë°›ì€  ë©”ì¼ í•¨ 
 	@GetMapping("/receiveList")
 	public String recivelist(HttpSession session,Model m) {
 		
@@ -64,10 +68,10 @@ public class EmailController {
 		return "email/MailReceiveList";
 	}
 	
-	//¹ŞÀº ¸ŞÀÏÇÔÀÇ ÁÖÀÎ  ¸â¹öÅ×ÀÌºí¿¡¼­ °¡Á®¿Ã°Ô¿ä
+	//ë°›ì€ ë©”ì¼í•¨ì˜ ì£¼ì¸  ë©¤ë²„í…Œì´ë¸”ì—ì„œ ê°€ì ¸ì˜¬ê²Œìš”
 
 	
-	//º¸³½ ¸ŞÀÏÇÔ
+	//ë³´ë‚¸ ë©”ì¼í•¨
 	@GetMapping("/sendList")
 	public String sendlist(HttpSession session,Model m) {
 		
@@ -77,40 +81,55 @@ public class EmailController {
 		return "email/MailSendList";
 	}
 	
-	//Á¦¸ñ Å¬¸¯½Ã »ó¼¼ÆäÀÌÁö ÀÌµ¿ ,ÀĞÀ½ Ã³¸® ¾÷µ¥ÀÌÆ®
+	//ì œëª© í´ë¦­ì‹œ ìƒì„¸í˜ì´ì§€ ì´ë™ ,ì½ìŒ ì²˜ë¦¬ ì—…ë°ì´íŠ¸
 	@GetMapping("/detail")
 	public String getdatail(Model m,int mailnum) {
 		service.readupdate(mailnum);
-		EmailDTO dto= service.detail(mailnum);//»ó¼¼º¸±â		
+		EmailDTO dto= service.detail(mailnum);//ìƒì„¸ë³´ê¸°		
 		m.addAttribute("data",dto);
 		return "email/MailDetail";
+	}
+	
+	//ë³´ë‚¸ ë©”ì¼í•¨ ë””í…Œì¼ 
+	@GetMapping("/detail2")
+	public String getdatail2(Model m,int mailnum) {
+		EmailDTO dto= service.detail(mailnum);//ìƒì„¸ë³´ê¸°		
+		m.addAttribute("data",dto);
+		return "email/MailDetailSend";
 	}
 	
 
 
 	
-	//¾ÈÀĞÀº ¸ŞÀÏÇÔ 
+	//ì•ˆì½ì€ ë©”ì¼í•¨ 
 	@GetMapping("/unreadList")
 	public String unreadlist(HttpSession session,Model m) {
 		EmailDTO dto = new EmailDTO();
 		dto.setReceivemail("xo@mit.com");
 		m.addAttribute("Unreadlist", service.unreadlist(dto));
-		m.addAttribute("Unreadcount", service.count(dto)); //¸ŞÀÏ ¼ö Ä«¿îÆ®
+		m.addAttribute("Unreadcount", service.count(dto)); //ë©”ì¼ ìˆ˜ ì¹´ìš´íŠ¸
 		return "email/UnreadMailList";
 	}
 	
+	//íœ´ì§€í†µ = ì‚­ì œí•œ ë©”ì¼
+	@GetMapping("/deleteList")
+	public String deletelist(HttpSession session,Model m) {
+		EmailDTO dto = new EmailDTO();
+		dto.setReceivemail("xo@mit.com");
+		m.addAttribute("deleteList", service.deleteview(dto));
+		return "email/deleteList";
+	}
 	
 	
-	
-	//´äÀå ±â´É 
+	//ë‹µì¥ ê¸°ëŠ¥ 
 	@GetMapping("/reply")
 	public String reply(HttpSession session,@RequestParam String receivemail) {
 		session.setAttribute("receiveMail", receivemail);
 		return "email/ReplyWrite";
 	}
-	//´äÀå ÇÁ·Î¼¼½º
+	//ë‹µì¥ í”„ë¡œì„¸ìŠ¤
 	@PostMapping("/replypro")
-	public String replypro(EmailDTO email,RedirectAttributes rttr,Model m) {
+	public String replypro(EmailDTO email,RedirectAttributes rttr) {
 		log.info("register:"+email);
 	
 		service.reply(email);
@@ -118,10 +137,25 @@ public class EmailController {
 		return "redirect:/email/MailList";
 	}
 	
-	//°Ô½Ã±Û È®ÀÎ ÇÏ¸é ÀĞÀ½Ã³¸® ¾÷µ¥ÀÌÆ®
+	//ë©”ì¼ ì‚­ì œ
+	@PostMapping("/delupdate")
+	public String delete(int mailnum) {
+		log.info("delete ë©”ì¼ ì‚­ì œ:");
+		service.delupdate(mailnum);
+		return "redirect:/email/MailList";
+		
+
+	}
+	
+	//ë©”ì¼ ì „ì†¡ ì·¨ì†Œ delete 
+	@PostMapping("/revoke")
+	public String revoke(int mailnum) {
+		service.revoke(mailnum);
+		return "redirect:/email/MailList";
+	}
+
 	
 	
-	//¸ŞÀÏ »èÁ¦
 	
 	
 }

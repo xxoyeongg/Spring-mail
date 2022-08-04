@@ -36,7 +36,8 @@ float:left;
 <!-- post방식으로 자료를 컨트롤러로 보냄 -->
  
 발신자 이름 : <input name='sendername'><br>
-발신자 이메일 : ${mail.sendermail }<input type="hidden" value="${mail.sendermail }" name='sendermail'> <br>
+발신자 이메일 : <input name='sendermail'>
+${mail.sendermail }<input type="hidden" value="${mail.sendermail }" name='sendermail'> <br>
 수신자 이메일 : <input name='receivemail'><br>
 제목 : <input name='title'><br>
 내용 : <textarea rows="5" cols="80" name='content'></textarea>

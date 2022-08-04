@@ -13,27 +13,18 @@
       width: 280px; height:800px;
       border: 1px solid;
       position: absolute;
-
     }
-
                 #profile{
-
                   width: 100%; height: 35%;
                   position: relative;
-                  background-color: #e2ebee;
-               
- 
                 }
                 #profile #profile_image{
                   width: 150px; height: 150px;
                   position: relative;
                   left: 25%; top: 5%;
                   border: 1px solid;
-                
-                
                 }
                 #profile p{
-              
                 width: 280px; height: 30px;
                 }
                 
@@ -42,9 +33,6 @@
                   width: 280px; height: 30px;
                   background-color: rgba(97, 255, 208, 0.877);
                 }
-
-
-
                 #mail_section1{
       
                   width: 100%; height: 15%;
@@ -96,7 +84,7 @@
   <div class="main_nav">
 
     <div id="profile">
-      <div id="profile_image"><img src="" alt=" 이미지 예시"></div>
+      <div id="profile_image"><img src="" alt="프로필 사진"></div>
 	<br>
       <p>이름</p>
       <p>부서</p>
@@ -120,6 +108,7 @@
         <li><a href="MailList">전체 메일</a></li>
         <li><a href="receiveList">받은 메일</a></li>
         <li><a href="sendList">보낸메일</a></li>
+        <li><a href="deleteList">삭제한 메일함</a></li>
        </ul>
      </div>
   <div>

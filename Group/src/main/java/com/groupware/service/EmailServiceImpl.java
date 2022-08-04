@@ -85,13 +85,43 @@ public class EmailServiceImpl implements EmailService{
 		return mapper.count(dto);
 	}
 
+	
+
+	//게시글 삭제 (안보이게)
+	@Override
+	public void delupdate(int mailnum) {
+		// TODO Auto-generated method stub
+		mapper.delupdate(mailnum);
+		
+	}
+
+	@Override
+	public List<EmailDTO> deleteview(EmailDTO dto) {
+		// TODO Auto-generated method stub
+		return mapper.deleteview(dto);
+	}
+
+//	@Override
+//	public void delete(Integer mailnum) {
+//		// TODO Auto-generated method stub
+//		mapper.delete(mailnum);
+//		
+//	}
 
 
-
-
-
+	//전송취소 delete
+	@Override
+	public int revoke(int mailnum) {
+		// TODO Auto-generated method stub
+		return mapper.revoke(mailnum);
+		
+		
+	}
 
 
 
 
 }
+
+
+

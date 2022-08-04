@@ -1,7 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -27,42 +25,34 @@ float:left;
 </style>
 </head>
 <body>
-
 <div class="container">
 	<div class="nav">
 		<%@ include file="/WEB-INF/views/email/mailnav.jsp" %>
 	</div>
-<h2>보낸 메일함</h2>
-
+<h2>삭제한 메일 리스트</h2>
       <table border="1">
             <thead>
-                <tr> 
-       				<th>메일번호</th>
+                <tr>
                     <th>받는사람 </th>
                     <th>수신자 이메일</th>
-                    <th>전송시간</th>
+                    <th>시간</th>
                     <th>제목</th>
-                    <th>읽음 1 /안읽음 0</th>
-                     <th>전송 취소</th>
         
                 </tr>
             </thead>
             <tbody>
  				
-				<c:forEach items="${SendList }" var="email">
+				<c:forEach items="${deleteList }" var="email">
 					<tr>
-					<td><a href="/email/detail2?mailnum=${email.mailnum}">${email.mailnum }</a></td>
 					<td><c:out value="${email.sendername }"/></td>
 					<td><c:out value="${email.receivemail }"/></td>
-					<td><fmt:formatDate value="${email.registerDate }" pattern="YYYY/MM/DD/hh24:mm"/></td>
+					<td><c:out value="${email.registerDate }"/></td>
 					<td><c:out value="${email.title }"/></td>
-					<td><c:out value="${email.readck }"/></td>
-					<td><input type="button" value="전송취소 " /></td>
 					</tr>
 				</c:forEach>
 			 
             </tbody>
         </table>
- </div>
+</div>
 </body>
 </html>

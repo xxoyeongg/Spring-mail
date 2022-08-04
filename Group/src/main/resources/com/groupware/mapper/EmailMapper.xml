@@ -8,8 +8,8 @@
 </select>
 
 <!-- 메일 전송 -->
-<insert id="insert"> insert into Email (mailnum,sendername,sendermail,receivemail,title,content,registerDate,readck) 
-values (eml.nextval,#{sendername},#{sendermail},#{receivemail},#{title},#{content},sysdate,0) 
+<insert id="insert"> insert into Email (mailnum,sendername,sendermail,receivemail,title,content,registerDate,readck,delck) 
+values (eml.nextval,#{sendername},#{sendermail},#{receivemail},#{title},#{content},sysdate,0,0) 
 </insert>
 
 <!-- 받는 메일함 -->
@@ -17,7 +17,7 @@ values (eml.nextval,#{sendername},#{sendermail},#{receivemail},#{title},#{conten
 
 select *
 from Email
-where receivemail =#{receivemail}
+where delck=0 and receivemail =#{receivemail}
 order by registerDate
 
 </select>
@@ -43,8 +43,8 @@ where mailnum =#{mailnum}
 <!-- 답장 -->
 
 <insert id="reply">
-insert into Email (mailnum,sendername,sendermail,receivemail,title,content,registerDate,readck) 
-values (eml.nextval,#{sendername},#{sendermail},#{receivemail},#{title},#{content},sysdate,0) 
+insert into Email (mailnum,sendername,sendermail,receivemail,title,content,registerDate,readck,delck) 
+values (eml.nextval,#{sendername},#{sendermail},#{receivemail},#{title},#{content},sysdate,0,0) 
 </insert>
 
 <!-- 수신확인 시 업데이트 -->
@@ -73,8 +73,23 @@ where readck=0 and receivemail =#{receivemail}
 
 </select>
 
-<!--메일 삭제 -->
+<!--나에게서 메일 삭제 (업데이트)-->
+<update id="delupdate" >
+update Email
+set delck =1 
+where mailnum=#{mailnum}
+</update>
 
+<!-- 삭제 함 -->
+<select id="deleteview" resultType="com.groupware.dto.EmailDTO" >
+select *
+from Email
+where delck=1 and receivemail =#{receivemail}
 
+</select>
+<!-- 메일 전송 취소 (삭제)-->
+<delete id="revoke" parameterType="int">
+delete from Email where mailnum=#{mailnum} and readck=0
+</delete>
 
 </mapper>
