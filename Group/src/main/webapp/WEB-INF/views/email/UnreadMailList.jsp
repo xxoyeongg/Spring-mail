@@ -1,36 +1,20 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+    <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<style type="text/css">
-	*{
-      margin: 0; padding: 0;
-      font-family: 'LeferiPoint-WhiteObliqueA';
-      
-    }
- /* 컨테이너 */
-.container{
-  width:1500px; height: 800px;
-  margin: 0 auto;
+<link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/resources/css/header.css" /><!-- header css -->
+<link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/resources/css/aside.css" /><!-- main css -->
+<link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/resources/css/basic.css" /><!-- basic css -->
 
-}
-.nav{
-width: 300px; height: 100%;
-float:left;
-}
-
-</style>
 </head>
 <body>
-<div class="container">
-
-	<div class="nav">
-	<%@ include file="/WEB-INF/views/email/mailnav.jsp" %>
-	</div>
+	<%@ include file="/WEB-INF/views/include/header.jsp" %>
+	<%@ include file="/WEB-INF/views/include/aside.jsp" %>
     <section>
     <h2>안읽은  메일함 읽음 0만 떠야함 </h2>
         <table border="1">

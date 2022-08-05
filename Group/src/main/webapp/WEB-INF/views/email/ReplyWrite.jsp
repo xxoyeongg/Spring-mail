@@ -6,34 +6,21 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<style type="text/css">
-	*{
-      margin: 0; padding: 0;
-      font-family: 'LeferiPoint-WhiteObliqueA';
-      
-    }
- /* 컨테이너 */
-.container{
-  width:1500px; height: 800px;
-  margin: 0 auto;
+<link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/resources/css/header.css" /><!-- header css -->
+<link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/resources/css/aside.css" /><!-- main css -->
+<link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/resources/css/basic.css" /><!-- basic css -->
 
-}
-.nav{
-width: 300px; height: 100%;
-float:left;
-}
-
-</style>
 <%
 String receiveMail =(String)session.getAttribute("receiveMail");
 
 %>
 </head>
 <body>
-<div class="container">
-	<div class="nav">
-	<%@ include file="/WEB-INF/views/email/mailnav.jsp" %>
-	</div>
+
+
+	<%@ include file="/WEB-INF/views/include/header.jsp" %>
+	<%@ include file="/WEB-INF/views/include/aside.jsp" %>
+<section>
 <h2>답장</h2>
 <form method="post" action="/email/replypro"> 
 <!-- post방식으로 자료를 컨트롤러로 보냄 -->
@@ -49,6 +36,7 @@ String receiveMail =(String)session.getAttribute("receiveMail");
 </form>
 <span style="color:red;">${message}</span>
  <p>수신자 이메일  넘기기  </p>
-</div>
+			
+    </section>
 </body>
 </html>

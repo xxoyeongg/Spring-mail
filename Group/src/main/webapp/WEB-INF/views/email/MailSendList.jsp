@@ -7,33 +7,16 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<style type="text/css">
-	*{
-      margin: 0; padding: 0;
-      font-family: 'LeferiPoint-WhiteObliqueA';
-      
-    }
- /* 컨테이너 */
-.container{
-  width:1500px; height: 800px;
-  margin: 0 auto;
+<link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/resources/css/header.css" /><!-- header css -->
+<link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/resources/css/aside.css" /><!-- main css -->
+<link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/resources/css/basic.css" /><!-- basic css -->
 
-}
-.nav{
-width: 300px; height: 100%;
-float:left;
-}
-
-</style>
 </head>
 <body>
-
-<div class="container">
-	<div class="nav">
-		<%@ include file="/WEB-INF/views/email/mailnav.jsp" %>
-	</div>
+	<%@ include file="/WEB-INF/views/include/header.jsp" %>
+	<%@ include file="/WEB-INF/views/include/aside.jsp" %>
+	<section>
 <h2>보낸 메일함</h2>
-
       <table border="1">
             <thead>
                 <tr> 
@@ -52,7 +35,7 @@ float:left;
 				<c:forEach items="${SendList }" var="email">
 					<tr>
 					<td><a href="/email/detail2?mailnum=${email.mailnum}">${email.mailnum }</a></td>
-					<td><c:out value="${email.sendername }"/></td>
+					<td><c:out value="${email.memnum }"/></td>
 					<td><c:out value="${email.receivemail }"/></td>
 					<td><fmt:formatDate value="${email.registerDate }" pattern="YYYY/MM/DD/hh24:mm"/></td>
 					<td><c:out value="${email.title }"/></td>
@@ -63,6 +46,6 @@ float:left;
 			 
             </tbody>
         </table>
- </div>
+   </section>
 </body>
 </html>

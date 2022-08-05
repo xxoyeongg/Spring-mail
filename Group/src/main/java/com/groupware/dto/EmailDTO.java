@@ -7,7 +7,7 @@ import lombok.Data;
 @Data
 public class EmailDTO {
 	private int mailnum;//메일번호
-	private String sendername;// 발신인
+	private int memnum;// 사원번호 -> 외래키
 	private String sendermail; //발신자 이메일
 	private String receivemail; //수신자 이메일
 	private String title; //제목

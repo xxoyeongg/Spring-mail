@@ -6,31 +6,15 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<style type="text/css">
-	*{
-      margin: 0; padding: 0;
-      font-family: 'LeferiPoint-WhiteObliqueA';
-      
-    }
- /* 컨테이너 */
-.container{
-  width:1500px; height: 800px;
-  margin: 0 auto;
-
-}
-.nav{
-width: 300px; height: 100%;
-float:left;
-}
-
-</style>
+<link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/resources/css/header.css" /><!-- header css -->
+<link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/resources/css/aside.css" /><!-- main css -->
+<link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/resources/css/basic.css" /><!-- basic css -->
 </head>
 <body>
+	<%@ include file="/WEB-INF/views/include/header.jsp" %>
+	<%@ include file="/WEB-INF/views/include/aside.jsp" %>
+	<section>
 <form action="/email/revoke" method="post">
-<div class="container">
-	<div class="nav">
-		<%@ include file="/WEB-INF/views/email/mailnav.jsp" %>
-	</div>
 <h2>상세페이지 (보낸 사람 )</h2>
       <table border="1">
             <thead>
@@ -59,7 +43,10 @@ float:left;
 			 
             </tbody>   
         </table>
-	</div>
+           <input type="submit" value="삭제">
+
 	</form>
+				
+    </section>
 </body>
 </html>

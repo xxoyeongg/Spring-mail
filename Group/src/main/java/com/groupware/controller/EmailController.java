@@ -41,10 +41,10 @@ public class EmailController {
 	@GetMapping("/write")
 	public String write(HttpSession session,Model m) {
 		
-		//보내는 사람  고정
-		//EmailDTO dto = new EmailDTO();
-		//dto.setSendermail("xo@mit.com");
-		//m.addAttribute("mail", dto);
+		//
+		m.addAttribute("mem_eml", (String)session.getAttribute("mem_eml"));
+		m.addAttribute("mem_nm", (String)session.getAttribute("mem_nm"));
+		m.addAttribute("mem_no", (String)session.getAttribute("mem_no"));
 		return "email/write";
 		
 	}
@@ -55,16 +55,14 @@ public class EmailController {
 		service.send(email);
 		rttr.addFlashAttribute("result",email.getSendermail());
 	
-		return "redirect:/email/MailList";
+		return "redirect:/email/MailSendList";
 	}
 	
 	//받은  메일 함 
 	@GetMapping("/receiveList")
 	public String recivelist(HttpSession session,Model m) {
 		
-		EmailDTO dto = new EmailDTO();
-		dto.setReceivemail("xo@mit.com");
-		m.addAttribute("ReceiveList", service.receiveList(dto));
+		m.addAttribute("mem_eml", (String)session.getAttribute("mem_eml"));
 		return "email/MailReceiveList";
 	}
 	

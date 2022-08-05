@@ -8,8 +8,8 @@
 </select>
 
 <!-- 메일 전송 -->
-<insert id="insert"> insert into Email (mailnum,sendername,sendermail,receivemail,title,content,registerDate,readck,delck) 
-values (eml.nextval,#{sendername},#{sendermail},#{receivemail},#{title},#{content},sysdate,0,0) 
+<insert id="insert"> insert into Email (mailnum,memnum,sendermail,receivemail,title,content,registerDate,readck,delck) 
+values (eml.nextval,#{memnum},#{sendermail},#{receivemail},#{title},#{content},sysdate,0,0) 
 </insert>
 
 <!-- 받는 메일함 -->
@@ -21,6 +21,8 @@ where delck=0 and receivemail =#{receivemail}
 order by registerDate
 
 </select>
+
+
 
 <!-- 보낸메일함 -->
 <select id="sendList" resultType="com.groupware.dto.EmailDTO">
@@ -43,8 +45,8 @@ where mailnum =#{mailnum}
 <!-- 답장 -->
 
 <insert id="reply">
-insert into Email (mailnum,sendername,sendermail,receivemail,title,content,registerDate,readck,delck) 
-values (eml.nextval,#{sendername},#{sendermail},#{receivemail},#{title},#{content},sysdate,0,0) 
+insert into Email (mailnum,memnum,sendermail,receivemail,title,content,registerDate,readck,delck) 
+values (eml.nextval,#{memnum},#{sendermail},#{receivemail},#{title},#{content},sysdate,0,0) 
 </insert>
 
 <!-- 수신확인 시 업데이트 -->

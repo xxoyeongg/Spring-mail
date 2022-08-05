@@ -7,44 +7,26 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<style type="text/css">
-	*{
-      margin: 0; padding: 0;
-      font-family: 'LeferiPoint-WhiteObliqueA';
-      
-    }
- /* 컨테이너 */
-.container{
-  width:1500px; height: 800px;
-  margin: 0 auto;
-
-}
-.nav{
-width: 300px; height: 100%;
-float:left;
-}
-
-</style>
-
+<link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/resources/css/header.css" /><!-- header css -->
+<link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/resources/css/aside.css" /><!-- main css -->
+<link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/resources/css/basic.css" /><!-- basic css -->
 
 </head>
 <body>
+	<%@ include file="/WEB-INF/views/include/header.jsp" %>
+	<%@ include file="/WEB-INF/views/include/aside.jsp" %>
+	<section>
 
-<div class="container">
-	<div class="nav">
-		<%@ include file="/WEB-INF/views/email/mailnav.jsp" %>
-	</div>
 	<h2>받는 메일함</h2>
 	<form action="/email/delupdate" method="post">
-  <table border="1">
-            <thead>
+    <table class="table table-hover">
+    	   <thead>
                 <tr>
-                
                 	<th>이메일 번호</th>
-                    <th>보낸사람 </th>
-                    <th>발신자 이메일</th>
-                    <th>시간</th>
+                    <th>보낸 사람 이름</th>
+                    <th>보낸 사람 이메일</th>
                     <th>제목</th>
+                    <th>시간</th>
                     <th>읽음 1 /안읽음 0</th>
         
                 </tr>
@@ -66,13 +48,14 @@ float:left;
 				</c:forEach>
 			 
             </tbody>
-         
-        </table>
+    </table>
+    
         </form>
+			
+    </section>
+    
 
-</div>
-
-
+    
       
 </body>
 </html>

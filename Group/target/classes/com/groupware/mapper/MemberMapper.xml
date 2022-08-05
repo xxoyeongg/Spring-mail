@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"HTTP://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.groupware.mapper.MemberMapper">
+
+
+<!-- 로그인 -->
+<select id="login" resultType="int">
+		SELECT count(*) from member WHERE
+		mem_id=#{mem_id} AND mem_pw=#{mem_pw}
+</select>
+
+<select id="memdetail" resultType="com.groupware.dto.MemberDTO">
+		SELECT * from member WHERE
+		mem_id=#{mem_id}
+</select>
+
+<!-- 회원가입 -->
+<insert id="register">
+
+</insert>
+
+</mapper>

@@ -86,7 +86,7 @@
     <div id="profile">
       <div id="profile_image"><img src="" alt="프로필 사진"></div>
 	<br>
-      <p>이름</p>
+      <p>이름${mem_nm} </p>
       <p>부서</p>
       <p id="logout"><a href="@" >logout</a></p>
      </div>
