@@ -21,12 +21,11 @@
             <thead>
                 <tr> 
        				<th>메일번호</th>
-                    <th>받는사람 </th>
                     <th>수신자 이메일</th>
                     <th>전송시간</th>
                     <th>제목</th>
                     <th>읽음 1 /안읽음 0</th>
-                     <th>전송 취소</th>
+
         
                 </tr>
             </thead>
@@ -35,12 +34,11 @@
 				<c:forEach items="${SendList }" var="email">
 					<tr>
 					<td><a href="/email/detail2?mailnum=${email.mailnum}">${email.mailnum }</a></td>
-					<td><c:out value="${email.memnum }"/></td>
 					<td><c:out value="${email.receivemail }"/></td>
 					<td><fmt:formatDate value="${email.registerDate }" pattern="YYYY/MM/DD/hh24:mm"/></td>
 					<td><c:out value="${email.title }"/></td>
 					<td><c:out value="${email.readck }"/></td>
-					<td><input type="button" value="전송취소 " /></td>
+	
 					</tr>
 				</c:forEach>
 			 

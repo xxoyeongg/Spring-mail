@@ -40,6 +40,7 @@ public class LoginController {
 	@PostMapping("/login/login")
 	public String loginpro(MemberDTO member) throws Exception {		
 			if(service.login(member)==1) {
+		
 				return "main";
 			}else {
 				return "redirect:/";

@@ -3,6 +3,36 @@
 "HTTP://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.groupware.mapper.EmailMapper">
 
+<resultMap type="com.groupware.dto.EmailDTO" id="Email">
+
+<id property="mailnum" column="mailnum"/>
+<id property="memnum" column="memnum"/>
+<id property="sendermail" column="sendermail"/>
+<id property="receivemail" column="receivemail"/>
+<id property="title" column="title"/>
+<id property="content" column="content"/>
+<id property="registerDate" column="registerDate"/>
+<id property="readck" column="readck"/>
+<id property="delck" column="delck"/>
+
+</resultMap>
+<resultMap type="com.groupware.dto.MemberDTO" id="Member">
+
+<id property="mem_no" column="mem_no"/>
+<id property="dept_no" column="dept_no"/>
+<id property="mem_id" column="mem_id"/>
+<id property="mem_pw" column="mem_pw"/>
+<id property="mem_nm" column="mem_nm"/>
+<id property="mem_eml" column="mem_eml"/>
+<id property="mem_ent" column="mem_ent"/>
+<id property="mem_tel" column="mem_tel"/>
+<id property="mem_stamp" column="mem_stamp"/>
+<id property="rank_no" column="rank_no"/>
+<collection property="com.groupware.dto.EmailDTO" resultMap="com.groupware.dto.EmailDTO"/>
+
+</resultMap>
+
+
 <select id="getList" resultType="com.groupware.dto.EmailDTO">
 <![CDATA[ select * from Email order by registerDate ]]>
 </select>
@@ -12,16 +42,12 @@
 values (eml.nextval,#{memnum},#{sendermail},#{receivemail},#{title},#{content},sysdate,0,0) 
 </insert>
 
-<!-- 받는 메일함 -->
+<!-- 받은 메일함 -->
 <select id="receiveList" resultType="com.groupware.dto.EmailDTO">
-
 select *
 from Email
-where delck=0 and receivemail =#{receivemail}
-order by registerDate
-
+where receivemail =#{receivemail}
 </select>
-
 
 
 <!-- 보낸메일함 -->
@@ -30,9 +56,9 @@ order by registerDate
 select *
 from Email
 where sendermail =#{sendermail}
-order by registerDate
 
 </select>
+
 <!-- 상세 페이지 -->
 <select id="detail" resultType="com.groupware.dto.EmailDTO">
 

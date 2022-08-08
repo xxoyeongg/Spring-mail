@@ -20,11 +20,12 @@
         <table border="1">
             <thead>
                 <tr>
-                 	<th>메일번호  </th>
-                    <th>발신인 </th>
-                    <th>발신자 이메일</th>
-                    <th>수신자 이메일</th>
+                    <th>이메일 번호</th>
+                    <th>보낸 사람 번호</th>
+                    <th>보낸 사람 이메일</th>
                     <th>제목</th>
+                    <th>시간</th>
+                    <th>읽음 1 /안읽음 0</th>
         
                 </tr>
             </thead>
@@ -33,7 +34,7 @@
 				<c:forEach items="${Unreadlist }" var="email">
 					<tr>
 					<td><a href="/email/detail?mailnum=${email.mailnum}">${email.mailnum }</a></td>
-					<td><c:out value="${email.sendername }"/></td>
+					<td><c:out value="${email.memnum }"/></td>
 					<td><c:out value="${email.sendermail }"/></td>
 					<td><c:out value="${email.registerDate }"/></td>
 					<td><a href="/email/detail?mailnum=${email.mailnum}"><c:out value="${email.title }"/></a></td>
@@ -46,6 +47,6 @@
         </table>
         안읽은 메일 수 :${Unreadcount}
     </section>
-</div>
+
 </body>
 </html>

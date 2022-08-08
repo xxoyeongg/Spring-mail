@@ -31,7 +31,6 @@
  				
 				<c:forEach items="${MailList }" var="email">
 					<tr>
-					<td><c:out value="${email.sendername }"/></td>
 					<td><c:out value="${email.sendermail }"/></td>
 					<td><c:out value="${email.receivemail }"/></td>
 					<td><c:out value="${email.title }"/></td>

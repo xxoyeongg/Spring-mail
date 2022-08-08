@@ -20,7 +20,7 @@
 <form method="post" action="/email/writepro"> 
 <!-- post방식으로 자료를 컨트롤러로 보냄 -->
  
-발신자 이름 :${mem_nm} <input type="hidden" value="${mem_nm}" name='memnum'><br>
+사원번호 ${mem_no} <input type="hidden" value="${mem_no}" name='memnum'><br>
 발신자 이메일 : ${mem_eml}<input type="hidden" value="${mem_eml}" name='sendermail'> <br>
 수신자 이메일 : <input name='receivemail'><br>
 제목 : <input name='title'><br>

@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.groupware.dto.Bean;
 import com.groupware.dto.EmailDTO;
 import com.groupware.service.EmailService;
 
@@ -55,26 +56,26 @@ public class EmailController {
 		service.send(email);
 		rttr.addFlashAttribute("result",email.getSendermail());
 	
-		return "redirect:/email/MailSendList";
+		return "redirect:/email/sendList";
 	}
 	
 	//받은  메일 함 
 	@GetMapping("/receiveList")
-	public String recivelist(HttpSession session,Model m) {
+	public String receivelist(HttpSession session,Model m) {
 		
-		m.addAttribute("mem_eml", (String)session.getAttribute("mem_eml"));
+		EmailDTO dto = new EmailDTO();
+		dto.setReceivemail("aa@first.com");
+		m.addAttribute("ReceiveList", service.receiveList(dto));
 		return "email/MailReceiveList";
 	}
 	
-	//받은 메일함의 주인  멤버테이블에서 가져올게요
-
 	
 	//보낸 메일함
 	@GetMapping("/sendList")
 	public String sendlist(HttpSession session,Model m) {
 		
 		EmailDTO dto = new EmailDTO();
-		dto.setSendermail("xo@mit.com");
+		dto.setSendermail("aa@first.com");
 		m.addAttribute("SendList", service.sendList(dto));
 		return "email/MailSendList";
 	}
@@ -132,7 +133,7 @@ public class EmailController {
 	
 		service.reply(email);
 		rttr.addFlashAttribute("result",email.getReceivemail());
-		return "redirect:/email/MailList";
+		return "redirect:/email/sendList";
 	}
 	
 	//메일 삭제
@@ -140,16 +141,15 @@ public class EmailController {
 	public String delete(int mailnum) {
 		log.info("delete 메일 삭제:");
 		service.delupdate(mailnum);
-		return "redirect:/email/MailList";
+		return "redirect:/email/sendList";
 		
-
 	}
 	
 	//메일 전송 취소 delete 
 	@PostMapping("/revoke")
 	public String revoke(int mailnum) {
 		service.revoke(mailnum);
-		return "redirect:/email/MailList";
+		return "redirect:/email/sendList";
 	}
 
 	

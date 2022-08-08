@@ -17,13 +17,16 @@
 	<%@ include file="/WEB-INF/views/include/aside.jsp" %>
 	<section>
 
-	<h2>받는 메일함</h2>
+	<h2>받은 메일함</h2>
+	안읽은 메일함
+	<a href="/email/unreadList">안읽은</a>
 	<form action="/email/delupdate" method="post">
-    <table class="table table-hover">
+	
+    <table border="1" class="table table-hover">
     	   <thead>
                 <tr>
                 	<th>이메일 번호</th>
-                    <th>보낸 사람 이름</th>
+                    <th>보낸 사람 번호</th>
                     <th>보낸 사람 이메일</th>
                     <th>제목</th>
                     <th>시간</th>
@@ -34,28 +37,24 @@
             <tbody>
  				
 				<c:forEach items="${ReceiveList }" var="email">
+				
 					<tr>
 					<td><a href="/email/detail?mailnum=${email.mailnum}">${email.mailnum }</a></td>
-					<td><c:out value="${email.sendername }"/></td>
+					<td><c:out value="${email.memnum }"/></td>
 					<td><c:out value="${email.sendermail }"/></td>
 					<td><fmt:formatDate value="${email.registerDate }" pattern="yyyy/mm/dd/hh:mm:ss"/></td>
 					<td><a href="/email/detail?mailnum=${email.mailnum}"><c:out value="${email.title }"/></a></td>
 					<td><c:out value="${email.readck }"/></td>
 					<td><input type="hidden" value="${email.mailnum }" name='mailnum'>
-						<input type="submit">	
-							</td>					
+					<input type="submit" value="삭제"></td>					
 					</tr>
+					
 				</c:forEach>
 			 
             </tbody>
-    </table>
-    
-        </form>
-			
+   		 </table>
+        </form>	
     </section>
-    
-
-    
-      
+  
 </body>
 </html>

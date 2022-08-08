@@ -33,9 +33,11 @@ public class MemberServiceImlp implements MemberService {
 	public int login(MemberDTO member) throws Exception {
 		MemberDTO dto =  mapper.memdetail(member);
 		if(mapper.login(member)==1) {
+			System.out.println(dto);
 			session.setAttribute("mem_id", dto.getMem_id());			
 			session.setAttribute("mem_nm", dto.getMem_nm());
 			session.setAttribute("mem_eml", dto.getMem_eml());
+			session.setAttribute("mem_no", String.valueOf (dto.getMem_no()));//정수형 형변환
 			return 1; 
 		}else {
 			return 0; 
