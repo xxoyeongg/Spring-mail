@@ -26,11 +26,10 @@ float:left;
 </style>
 </head>
 <body>
-<div class="container">
-	<div class="nav">
-		<%@ include file="/WEB-INF/views/email/mailnav.jsp" %>%>
-	</div>
-<h2>상세페이지(받은 메일 )</h2>
+	<%@ include file="/WEB-INF/views/include/header.jsp" %>
+	<%@ include file="/WEB-INF/views/include/aside.jsp" %>
+	<section>
+	<h2>상세페이지(받은 메일 )</h2>
       <table border="1">
             <thead>
                 <tr>
@@ -60,6 +59,6 @@ float:left;
            
         </table>
          <a href="/email/reply?receivemail=${data.sendermail}">답장하기</a>
-	</div>
+	 </section>
 </body>
 </html>

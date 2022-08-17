@@ -41,7 +41,7 @@ public class LoginController {
 	public String loginpro(MemberDTO member) throws Exception {		
 			if(service.login(member)==1) {
 		
-				return "main";
+				return "main";   
 			}else {
 				return "redirect:/";
 			}

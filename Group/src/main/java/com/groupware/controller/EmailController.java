@@ -64,7 +64,8 @@ public class EmailController {
 	public String receivelist(HttpSession session,Model m) {
 		
 		EmailDTO dto = new EmailDTO();
-		dto.setReceivemail("aa@first.com");
+		
+		dto.setReceivemail((String)session.getAttribute("mem_eml"));
 		m.addAttribute("ReceiveList", service.receiveList(dto));
 		return "email/MailReceiveList";
 	}
@@ -75,7 +76,7 @@ public class EmailController {
 	public String sendlist(HttpSession session,Model m) {
 		
 		EmailDTO dto = new EmailDTO();
-		dto.setSendermail("aa@first.com");
+		dto.setSendermail((String)session.getAttribute("mem_eml"));
 		m.addAttribute("SendList", service.sendList(dto));
 		return "email/MailSendList";
 	}

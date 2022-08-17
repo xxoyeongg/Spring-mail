@@ -46,7 +46,7 @@ values (eml.nextval,#{memnum},#{sendermail},#{receivemail},#{title},#{content},s
 <select id="receiveList" resultType="com.groupware.dto.EmailDTO">
 select *
 from Email
-where receivemail =#{receivemail}
+where receivemail =#{receivemail} and delck=0
 </select>
 
 

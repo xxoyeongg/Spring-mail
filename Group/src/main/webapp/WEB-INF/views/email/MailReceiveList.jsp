@@ -11,6 +11,7 @@
 <link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/resources/css/aside.css" /><!-- main css -->
 <link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/resources/css/basic.css" /><!-- basic css -->
 
+
 </head>
 <body>
 	<%@ include file="/WEB-INF/views/include/header.jsp" %>
@@ -22,7 +23,7 @@
 	<a href="/email/unreadList">안읽은</a>
 	<form action="/email/delupdate" method="post">
 	
-    <table border="1" class="table table-hover">
+    <table class="table table-hover">
     	   <thead>
                 <tr>
                 	<th>이메일 번호</th>
@@ -31,7 +32,6 @@
                     <th>제목</th>
                     <th>시간</th>
                     <th>읽음 1 /안읽음 0</th>
-        
                 </tr>
             </thead>
             <tbody>
