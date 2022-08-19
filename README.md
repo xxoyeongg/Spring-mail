@@ -7,3 +7,6 @@
 
 
 api를 적용하는 메일을  추후 개인 프로젝트로 진행해보려고  합니다
+
+
+team  --> https://github.com/choifriendship/TeamProject_FirstWorks  
